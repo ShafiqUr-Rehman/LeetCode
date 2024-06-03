@@ -10,12 +10,17 @@ public:
      if (complementMap.find(a) != complementMap.end()) {
                 return {complementMap[a], i};
             };
-
             // Store current number and its index in the hashmap
-            complementMap[nums[i]] = i;
-        }
-        
+            complementMap[nums[i]] = i;   // both are index
+        };
+
+
         // If no solution found, return an empty vector
         return {};
     };
 };
+
+
+// firstly hashmap is empty ;
+// it store the values one by one;
+//if hi finds the value that is already exixts it is gurnatee that thier sum will br equal to target
