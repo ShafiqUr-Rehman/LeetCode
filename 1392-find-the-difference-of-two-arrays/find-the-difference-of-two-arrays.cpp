@@ -10,16 +10,16 @@ public:
     for (const int& num : set1) {
         if (set2.find(num) == set2.end()) {
             diff1.push_back(num);
-        }
-    }
+        };
+    };
 
     // Find elements in nums2 but not in nums1
     for (const int& num : set2) {
         if (set1.find(num) == set1.end()) {
             diff2.push_back(num);
-        }
-    }
+        };
+    };
 
     return {diff1, diff2};
-}
+};
 };
