@@ -1,25 +1,32 @@
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-    unordered_set<int> set1(nums1.begin(), nums1.end());
-    unordered_set<int> set2(nums2.begin(), nums2.end());
+        unordered_map<int, int> freq1, freq2;
 
-    vector<int> diff1, diff2;
-
-    // Find elements in nums1 but not in nums2
-    for (const int& num : set1) {
-        if (set2.find(num) == set2.end()) {
-            diff1.push_back(num);
+        // Count frequencies of elements in nums1 and nums2
+        for (int num : nums1) {
+            freq1[num]++;
         }
-    }
-
-    // Find elements in nums2 but not in nums1
-    for (const int& num : set2) {
-        if (set1.find(num) == set1.end()) {
-            diff2.push_back(num);
+        for (int num : nums2) {
+            freq2[num]++;
         }
-    }
 
-    return {diff1, diff2};
-}
+        vector<int> diff1, diff2;
+
+        // Find elements in nums1 but not in nums2
+        for (auto& pair : freq1) {
+            if (freq2.find(pair.first) == freq2.end()) {
+                diff1.push_back(pair.first);
+            }
+        }
+
+        // Find elements in nums2 but not in nums1
+        for (auto& pair : freq2) {
+            if (freq1.find(pair.first) == freq1.end()) {
+                diff2.push_back(pair.first);
+            }
+        }
+
+        return {diff1, diff2};
+    }
 };
