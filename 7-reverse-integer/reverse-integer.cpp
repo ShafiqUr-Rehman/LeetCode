@@ -13,10 +13,10 @@ public:
             if (reversed < INT_MIN/10 || (reversed == INT_MIN / 10 && pop<= INT_MIN % 10)) return 0;
 
             reversed = reversed * 10 + pop;
-        };
+        }
 
         return reversed;
-    };
+    }
 };
 
 
