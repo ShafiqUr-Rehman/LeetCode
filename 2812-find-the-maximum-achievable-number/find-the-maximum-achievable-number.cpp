@@ -13,6 +13,7 @@ public:
       // x-t = num + t    (t menas times)
       // x=num + t + t;
       // x = num + 2t;
+      
       return num + 2*t;
       
     };
