@@ -4,8 +4,8 @@ public:
         int reversed = 0;
         
         while (x != 0) {
-            int pop = x % 10;
-            x /= 10;
+            int pop = x % 10;   // to get the last digit
+            x /= 10;   // to deltele the last digit
 
             // Check for overflow/underflow before actually updating reversed
             // INT_MAX  and INT_MIN  represent the last digit of the maximum and minimum 32-bit signed integers, respectively.
