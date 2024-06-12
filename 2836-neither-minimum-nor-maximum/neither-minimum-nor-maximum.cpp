@@ -10,14 +10,12 @@ public:
         for(auto it : nums){
             mini = min(mini, it);
             maxi = max(maxi, it);
-        }
-
+        };
         for(auto it : nums){
             if(it!=mini && it!=maxi){
                 return it;
             }
-        }
-        
+        };       
         return -1;
-    }
+    };
 };
