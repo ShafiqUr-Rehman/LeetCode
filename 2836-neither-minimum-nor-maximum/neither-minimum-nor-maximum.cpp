@@ -7,13 +7,13 @@ public:
         }
 
         int mini = INT_MAX, maxi = INT_MIN;
-        for(auto it : nums){
-            mini = min(mini, it);
-            maxi = max(maxi, it);
+        for(auto n: nums){
+            mini = min(mini, n);
+            maxi = max(maxi, n);
         };
-        for(auto it : nums){
-            if(it!=mini && it!=maxi){
-                return it;
+        for(auto n : nums){
+            if(n!=mini && n!=maxi){
+                return n;
             }
         };       
         return -1;
