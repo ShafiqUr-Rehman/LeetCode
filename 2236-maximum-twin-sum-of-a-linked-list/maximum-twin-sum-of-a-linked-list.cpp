@@ -11,23 +11,24 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-        deque<int> dq;
-        ListNode* t = head;
+        if (head == nullptr) return 0;
 
-        while(t){
-            dq.push_back(t->val);
-            t = t->next;
+        // Step 1: Store values of nodes in an array
+        vector<int> values;
+        ListNode* current = head;
+        while (current != nullptr) {
+            values.push_back(current->val);
+            current = current->next;
         }
 
-        int ans = INT_MIN;
-
-        while(!dq.empty()){
-            int m = dq.front()+dq.back();
-            ans = max(ans, m);
-            dq.pop_front();
-            dq.pop_back();
+        // Step 2: Calculate twin sums and find the maximum sum
+        int maxSum = INT_MIN;
+        int n = values.size();
+        for (int i = 0; i < n / 2; ++i) {
+            int twinSum = values[i] + values[n - 1 - i];
+            maxSum = max(maxSum, twinSum);
         }
 
-        return ans;
+        return maxSum;
     }
 };
