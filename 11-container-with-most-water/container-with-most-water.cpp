@@ -1,6 +1,3 @@
-#include <vector>
-#include <algorithm>
-
 class Solution {
 public:
     int maxArea(std::vector<int>& height) {
@@ -10,9 +7,9 @@ public:
         
         while (left < right) {
             // Calculate current area
-            int currentArea = (right - left) * std::min(height[left], height[right]);
+            int currentArea = (right - left) * min(height[left], height[right]);
             // Update maxArea if current area is larger
-            maxArea = std::max(maxArea, currentArea);
+            maxArea = max(maxArea, currentArea);
             
             // Move the pointer pointing to the smaller height
             if (height[left] < height[right]) {
@@ -20,8 +17,8 @@ public:
             } else {
                 right--;
             }
-        }
+        };
         
         return maxArea;
-    }
+    };
 };
