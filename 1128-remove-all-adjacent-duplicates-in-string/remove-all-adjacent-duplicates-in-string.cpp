@@ -1,8 +1,8 @@
 class Solution {
 public:
     string removeDuplicates(string s) {
-
         stack<char> st;
+
         for (auto ch : s) {
             if (st.empty() || st.top() != ch) {
                 st.push(ch);
@@ -16,7 +16,8 @@ public:
             ans += st.top();
             st.pop();
         }
-        reverse(ans.begin(), ans.end()); // Reverse the string to get the correct order
+        reverse(ans.begin(),
+                ans.end()); // Reverse the string to get the correct order
         return ans;
-    }
+    };
 };
