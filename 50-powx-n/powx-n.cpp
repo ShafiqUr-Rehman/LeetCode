@@ -1,22 +1,18 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-        // Base cases
-        if (n == 0) return 1.0;
-        
-        // Recursive cases
-        if (n < 0) {
-            // If n is negative, compute 1 / (x^(-n))
-            return 1.0 / (x * myPow(x, -(n + 1)));
+        if (n == 0)
+            return 1.0; // Base case: x^0 = 1
+
+        double half = myPow(x, n / 2);
+
+        if (n % 2 == 0) {
+            return half * half;
         } else {
-            // If n is positive
-            if (n % 2 == 0) {
-                // If n is even
-                double half = myPow(x, n / 2);
-                return half * half;
+            if (n > 0) {
+                return x * half * half;
             } else {
-                // If n is odd
-                return x * myPow(x, n - 1);
+                return (half * half) / x;
             }
         }
     }
