@@ -1,15 +1,15 @@
 class Solution {
 public:
     vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
-        vector<string>nm;
-        map<int,string>mp;
+        vector<string>name;
+        map<int,string>sort;
         for(int i=0;i<names.size();i++){
-            mp[heights[i]]=names[i];
+            sort[heights[i]]=names[i];//The map mp is  sorted the keys (heights) in ascending order.
         }
-        for(auto i:mp){
-            nm.push_back(i.second);
+        for(auto i:sort){
+            name.push_back(i.second);
         }
-        reverse(nm.begin(),nm.end());
-        return nm;
+        reverse(name.begin(),name.end());
+        return name;
     }
 };
