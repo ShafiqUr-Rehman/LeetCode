@@ -1,27 +1,47 @@
-#include <vector>
+#include <unordered_map>
+#include <utility>
+#include <functional>
+
 using namespace std;
 
 class Solution {
 public:
+    struct hash_pair {
+        template <class T1, class T2>
+        size_t operator()(const pair<T1, T2>& p) const {
+            auto hash1 = hash<T1>{}(p.first);
+            auto hash2 = hash<T2>{}(p.second);
+            return hash1 ^ hash2;
+        }
+    };
+
+    unordered_map<pair<int, int>, int, hash_pair> memo;
+
     int uniquePaths(int m, int n) {
-        vector<vector<int>> memo(m, vector<int>(n, -1));  // Initialize memoization table
-        return uniquePathsHelper(m - 1, n - 1, memo);  // Start from the bottom-right corner
-    }
+        // Use pair<int, int> as the key for the unordered_map
+        pair<int, int> key = make_pair(m, n);
 
-private:
-    int uniquePathsHelper(int row, int col, vector<vector<int>>& memo) {
-        // Base case: if we're at the top-left corner, there's only one way (to stay there)
-        if (row == 0 && col == 0) return 1;
+        // Check if the result for this state is already computed
+        if (memo.find(key) != memo.end())
+            return memo[key];
 
-        // If out of bounds, return 0
-        if (row < 0 || col < 0) return 0;
+        // Base case
+        if (m == 1 && n == 1)
+            return 1;
 
-        // If already calculated, return the stored value
-        if (memo[row][col] != -1) return memo[row][col];
+        int right = 0, down = 0;
 
-        // Recursive case: the number of unique paths to the top-left corner from the current cell
-        // is the sum of the unique paths from the cell above and the cell to the left
-        memo[row][col] = uniquePathsHelper(row - 1, col, memo) + uniquePathsHelper(row, col - 1, memo);
-        return memo[row][col];
+        if (m > 1)
+            down = uniquePaths(m - 1, n);
+        if (n > 1)
+            right = uniquePaths(m, n - 1);
+
+        // Calculate the total number of paths
+        int total = right + down;
+
+        // Store the result in the memoization map
+        memo[key] = total;
+
+        return total;
     }
 };
