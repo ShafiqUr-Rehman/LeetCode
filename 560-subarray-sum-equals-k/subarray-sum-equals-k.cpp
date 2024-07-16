@@ -1,17 +1,13 @@
-#include <vector>
-#include <unordered_map>
-using namespace std;
-
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
         unordered_map<int, int> prefixSumCount;
-        prefixSumCount[0] = 1; // To handle the case when the subarray starts from the beginning
+        prefixSumCount[0] = 1; 
         
         int currentSum = 0;
         int count = 0;
         
-        for (int num : nums) {
+        for (auto& num : nums) {
             currentSum += num;
             
             // Check if there's a prefix subarray we can subtract to get sum k
