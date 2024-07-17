@@ -20,7 +20,7 @@ public:
                     result.push_back({nums[i], nums[left], nums[right]});
                     while (left < right && nums[left] == nums[left + 1]) left++; // skip duplicates for the second element
                     while (left < right && nums[right] == nums[right - 1]) right--; // skip duplicates for the third element
-                    left++;
+
                     right--;
                 } else if (sum < 0) {
                     left++;
