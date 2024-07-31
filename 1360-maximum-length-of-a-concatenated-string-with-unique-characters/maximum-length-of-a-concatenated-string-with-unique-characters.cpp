@@ -1,33 +1,43 @@
 class Solution {
 public:
     int maxLength(vector<string>& arr) {
-        return backtrack(arr, "", 0);
+        int maxLength = 0;
+        backTrack(arr, "", 0, maxLength);
+        return maxLength;
     }
 
 private:
-    int backtrack(vector<string>& arr, string current, int index) {
-        // Check if the current string has unique characters
-        if (!isUnique(current)) {
-            return 0;
+    void backTrack(const vector<string>& arr, string current, int start, int& maxLength) {
+        if (maxLength < current.length())
+            maxLength = current.length();
+
+        for (int i = start; i < arr.size(); i++) {
+            if (!isValid(current, arr[i]))
+                continue;
+
+            backTrack(arr, current + arr[i], i + 1, maxLength);
         }
-        
-        int maxLength = current.size();
-        
-        for (int i = index; i < arr.size(); ++i) {
-            maxLength = max(maxLength, backtrack(arr, current + arr[i], i + 1));
-        }
-        
-        return maxLength;
     }
-    
-    bool isUnique(string s) {
-        unordered_set<char> chars;
-        for (char c : s) {
-            if (chars.find(c) != chars.end()) {
-                return false;
+
+    bool isValid(const string& currentString, const string& newString) {
+        unordered_set<char> charSet;
+
+        for (char ch : newString) {
+            if (charSet.count(ch) > 0) {
+                return false; 
             }
-            chars.insert(c);
+
+            charSet.insert(ch);
+
+            if (currentString.find(ch) != string::npos) {
+                return false;  
+            }
         }
+
         return true;
     }
 };
+
+
+
+
