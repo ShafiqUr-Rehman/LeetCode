@@ -1,22 +1,23 @@
 class Solution {
 public:
-    int dominantIndex(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0) return -1;
-
-        int maxIndex = 0;
-        for (int i = 1; i < n; ++i) {
-            if (nums[i] > nums[maxIndex]) {
-                maxIndex = i;
-            }
-        }
-
-        for (int i = 0; i < n; ++i) {
-            if (i != maxIndex && nums[maxIndex] < 2 * nums[i]) {
-                return -1;
-            }
-        }
-
-        return maxIndex;
-    }
+    int dominantIndex(vector<int>& nums);
 };
+
+int Solution::dominantIndex(vector<int>& nums) {
+    int max=INT_MIN, maxIndex, size = nums.size();
+    for ( int i = 0; i < size; ++i) {
+        if (nums[i] > max) {
+            max = nums[i];
+            maxIndex = i;
+        }
+    }
+    for ( int i = 0; i < size; ++i) {
+        if (i == maxIndex) {
+            continue;
+        }
+        if (2*nums[i] > max) {
+            return -1;
+        }
+    }
+    return maxIndex;
+}
