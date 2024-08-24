@@ -1,6 +1,3 @@
-#include <vector>
-#include <algorithm>
-
 class Solution {
 public:
     void nextPermutation(std::vector<int>& nums) {
@@ -13,25 +10,22 @@ public:
                 k = i - 1;
                 break;
             }
-        }
-        
+        }        
         // If no such `k` exists, reverse the entire array to get the smallest permutation
         if (k == -1) {
-            std::reverse(nums.begin(), nums.end());
+            reverse(nums.begin(), nums.end());
             return;
         }
-
         // Step 2: Find the largest index `l` greater than `k` such that nums[k] < nums[l]
         for (int l = n - 1; l > k; l--) {
             if (nums[l] > nums[k]) {
                 // Step 3: Swap the value of nums[k] with that of nums[l]
-                std::swap(nums[k], nums[l]);
+               swap(nums[k], nums[l]);
                 break;
             }
         }
-
         // Step 4: Reverse the sequence from nums[k + 1] to the end to get the next permutation
-        std::reverse(nums.begin() + k + 1, nums.end());
+      reverse(nums.begin() + k + 1, nums.end());
     }
 };
 
