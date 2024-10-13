@@ -7,6 +7,7 @@ public:
             freqMap[ch]++;
             maxFreq = max(maxFreq, freqMap[ch]);
         }
+
         vector<vector<char>> buckets(maxFreq + 1);
         for (auto& entry : freqMap) {
             buckets[entry.second].push_back(entry.first);
