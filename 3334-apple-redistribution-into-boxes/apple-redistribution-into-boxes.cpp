@@ -6,12 +6,12 @@ public:
             totalApples += a;
         }
         sort(capacity.begin(), capacity.end(), greater<int>());
-        int currentCurrency = 0;
+        int capacityBox = 0;
         int boxCount = 0;
         for (int c : capacity) {
-            currentCurrency += c;
+            capacityBox += c;
             boxCount++;
-            if (currentCurrency >= totalApples) {
+            if (capacityBox >= totalApples) {
                 break;
             }
         }
