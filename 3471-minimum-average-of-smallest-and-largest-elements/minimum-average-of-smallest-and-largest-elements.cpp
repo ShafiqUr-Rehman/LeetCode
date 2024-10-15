@@ -11,12 +11,6 @@ public:
             averages.push_back(avg);
         }
 
-        float mini = FLT_MAX;
-        for(int i = 0; i < averages.size(); i++) {
-            if (averages[i] < mini) {
-                mini = averages[i];
-            }
-        }       
-        return mini;
+   return *min_element(averages.begin(), averages.end());
     }
 };
