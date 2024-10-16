@@ -1,15 +1,14 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> freqMap;
+        unordered_map<char, int> map;
         int maxFreq = 0;
         for (char ch : s) {
-            freqMap[ch]++;
-            maxFreq = max(maxFreq, freqMap[ch]);
+            map[ch]++;
+            maxFreq = max(maxFreq, map[ch]);
         }
-
         vector<vector<char>> buckets(maxFreq + 1);
-        for (auto& entry : freqMap) {
+        for (auto& entry : map) {
             buckets[entry.second].push_back(entry.first);
         }
         string result;
