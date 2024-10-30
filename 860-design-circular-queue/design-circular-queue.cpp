@@ -1,53 +1,53 @@
-#include <vector>
-
 class MyCircularQueue {
-private:
-    std::vector<int> queue;
-    int head, tail, size, capacity;
-
-public:
-    MyCircularQueue(int k) : queue(k), head(-1), tail(-1), size(0), capacity(k) {}
-    
-    bool enQueue(int value) {
-        if (isFull()) return false;
-        if (isEmpty()) head = 0;
-        tail = (tail + 1) % capacity;
-        queue[tail] = value;
-        size++;
-        return true;
-    }
-    
-    bool deQueue() {
-        if (isEmpty()) return false;
-        if (head == tail) {
-            head = -1;
-            tail = -1;
-        } else {
-            head = (head + 1) % capacity;
+    private:
+        int *arr;
+        int front, rear, size, capacity;
+    public:
+        MyCircularQueue(int k) {
+            capacity = k;
+            arr = new int[capacity];
+            front = -1;
+            rear = -1;
+            size = 0;
         }
-        size--;
-        return true;
-    }
-    
-    int Front() {
-        return isEmpty() ? -1 : queue[head];
-    }
-    
-    int Rear() {
-        return isEmpty() ? -1 : queue[tail];
-    }
-    
-    bool isEmpty() {
-        return size == 0;
-    }
-    
-    bool isFull() {
-        return size == capacity;
-    }
-};
+        bool enQueue(int value) {
+            if (isFull()) return false;
+            if (isEmpty()) front = 0;
+            rear = (rear + 1) % capacity;
+            arr[rear] = value;
+            size++;
+            return true;
+        }
+        bool deQueue() {
+            if (isEmpty()) return false;
+            if (front == rear) {
+                front = -1;
+                rear = -1;
+            } else {
+                front = (front + 1) % capacity;
+            }
+            size--;
+            return true;
+        }
+        int Front() {
+            return isEmpty() ? -1 : arr[front];
+        }
+
+        int Rear() {
+            return isEmpty() ? -1 : arr[rear];
+        }
+        bool isEmpty() {
+            return size == 0;
+        }
+        bool isFull() {
+            return size == capacity;
+        }
+        ~MyCircularQueue() {
+            delete[] arr;
+        }};
 
 /**
- * Your MyCircularQueue object will be instantiated and called as such:
+ * Usage:
  * MyCircularQueue* obj = new MyCircularQueue(k);
  * bool param_1 = obj->enQueue(value);
  * bool param_2 = obj->deQueue();
