@@ -15,7 +15,6 @@ public:
         if (!root) return true;
         return isMirror(root->left, root->right);
     }
-    
     bool isMirror(TreeNode* left, TreeNode* right) {
         if (!left && !right) return true;
         if (!left || !right) return false;
