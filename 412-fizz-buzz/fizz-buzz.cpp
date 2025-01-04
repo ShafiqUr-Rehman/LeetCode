@@ -10,7 +10,7 @@ public:
             } else if (i % 5 == 0) {
                 fizzBuzz[i - 1] = "Buzz";
             } else {
-                fizzBuzz[i - 1] = to_string(i); // No need to use to_string here
+                fizzBuzz[i - 1] = to_string(i); 
             }
         }
         return fizzBuzz;
