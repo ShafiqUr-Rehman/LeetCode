@@ -1,15 +1,13 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-
-        unordered_set<int> hashset;
-        
-        for (const int& n : nums) {
-            if (hashset.find(n) != hashset.end()) {
-                return true;
+        unordered_set<int> seen;
+        for (auto num : nums) {
+            if (seen.find(num) != seen.end()) {
+                return true; 
             }
-            hashset.insert(n);
+            seen.insert(num);
         }
-        return false;
-    };
+        return false; 
+    }
 };
