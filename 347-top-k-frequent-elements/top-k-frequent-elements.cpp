@@ -9,7 +9,6 @@ public:
         for (auto entry : map) {
             freqVec.push_back({entry.second, entry.first});
         }
-
         sort(freqVec.begin(), freqVec.end(), greater<pair<int, int>>());
 
         vector<int> topKElements;
